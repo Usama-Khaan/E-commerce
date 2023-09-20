@@ -4,6 +4,7 @@
     <li>
       <%= user.email%>
       <p><%= button_to "Edit user", edit_user_path(user), method: :get, class: "btn btn-primary" %></>    
+      <%= button_to "Delete", user_path(user), method: :delete%>
     </li>
   <% end %>
 </ul>

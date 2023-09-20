@@ -3,10 +3,6 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
   def edit
     @user = User.find(params[:id])
   end
@@ -18,6 +14,12 @@ class UsersController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path, status: :see_other
   end
 
   def user_params
