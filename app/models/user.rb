@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  validates :password,
-            format: { with: /\A.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\|-]+\z/,
-                      message: 'must contain at least one special character' }
+  PASSWORD_REGEX = /\A.*[[:punct:]]+\z/
+  PASSWORD_MESSAGE = 'must contain at least one special character'
+  devise :database_authenticatable, :registerable, :rememberable, :validatable
+  validates :password, format: { with: PASSWORD_REGEX, message: PASSWORD_MESSAGE }
 end
