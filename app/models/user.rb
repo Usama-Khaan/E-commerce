@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   def assign_role(role_name)
     role = Role.find_by(name: role_name)
-    return unless role
+    return role.present?
 
     permissions.create(role: role)
   end
