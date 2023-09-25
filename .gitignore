@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+
+# database configuration file
 config/database.yml
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -13,6 +15,8 @@ config/database.yml
 !/log/.keep
 !/tmp/.keep
 
+# ignore tmp folder all files
+tmp
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
