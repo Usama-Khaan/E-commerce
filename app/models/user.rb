@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
   #  :lockable, :timeoutable, :trackable and :omniauthable
   PASSWORD_REGEX = /\A.*[[:punct:]]+\z/
   PASSWORD_MESSAGE = 'must contain at least one special character'
