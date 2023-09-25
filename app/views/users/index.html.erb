@@ -2,9 +2,14 @@
 <ul>
   <% @users.each do |user| %>
     <li>
-      <%= user.email %>
-      <p><%= button_to "Edit user", edit_user_path(user), method: :get %></>    
-      <%= button_to "Delete", user_path(user), method: :delete %>
+      <%= user.email%>
+      <% if current_user.has_role?('Admin') %>
+        <%= button_to "Edit user", edit_user_path(user), method: :get%>  
+        <%= button_to "Delete", user_path(user), method: :delete%>
+        <%= button_to "Show", user_path(user), method: :get%>  
+      <% elsif current_user.has_role?('Staff') %>
+        <%= button_to "Edit user", edit_user_path(user), method: :get%>  
+      <% end %>
     </li>
   <% end %>
 </ul>

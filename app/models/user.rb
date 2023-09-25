@@ -6,4 +6,15 @@ class User < ApplicationRecord
   validates :password, format: { with: PASSWORD_REGEX, message: PASSWORD_MESSAGE }, on: :create
   has_many :permissions
   has_many :roles, through: :permissions
+
+  def assign_role(role_name)
+    role = Role.find_by(name: role_name)
+    return unless role
+
+    permissions.create(role: role)
+  end
+
+  def has_role?(role_name)
+    roles.exists?(name: role_name)
+  end
 end
