@@ -1,1 +1,7 @@
 <h1>Products should be listed here</h1>
+<% @products.each do |product| %>
+  <li>
+    <%= link_to article.title, admin_article_path(article) %>
+  </li>
+<% end %>
+<%= button_to "Click", new_product_path, method: :get, class: "btn btn-primary" %>
