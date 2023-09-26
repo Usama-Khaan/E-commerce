@@ -1,8 +1,4 @@
-<h1><%= @product.title %></h1>
-<p><%= @product.description %></p>
-
-<%= button_to "Edit", edit_product_path(@product), method: :get, class: "edit-button" %>
-<%= button_to "Delete", product_path(@product), method: :delete, data: {
-  turbo: true,
-  confirm: "Are you sure?"
-} %>
+<p>Name: <%= @product.title %></>
+<p>Descripton: <%= @product.description %></p>
+<p>Price: <%= @product.price %></p>
+<p>Stock Quanity: <%= @product.product_stock_quantity%></p>
