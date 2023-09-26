@@ -16,8 +16,8 @@
   </div>
 
   <div>
-    <%= form.label :role_id, 'Assign Role:' %>
-    <%= form.select :role_id, Role.all.map { |role| [role.name, role.id] }, {}, class: 'form-control' %>
+    <%= form.label :role_ids, 'Assign Role:' %>
+    <%= form.select :role_ids, Role.all.map { |role| [role.name, role.id] }, {}, multiple: true %>
   </div>
 
   <div>

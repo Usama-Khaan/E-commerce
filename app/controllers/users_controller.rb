@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update!(user_params)
+    if @user.update(user_params)
       redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
@@ -28,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :username)
+    params.require(:user).permit(:email, :username, role_ids: [])
   end
 end
