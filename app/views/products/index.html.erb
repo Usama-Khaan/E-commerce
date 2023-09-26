@@ -1,7 +1,38 @@
-<h1>Products should be listed here</h1>
-<% @products.each do |product| %>
-  <li>
-    <%= link_to article.title, admin_article_path(article) %>
-  </li>
-<% end %>
-<%= button_to "Click", new_product_path, method: :get, class: "btn btn-primary" %>
+<h1>All Products</h1>
+<table class="table table-hover" class="table table-hover">
+  <thead>
+    <tr class="table-active">
+      <th>Name</th>
+      <% if current_user.has_role?('Admin') %>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Show</th>
+      <% elsif current_user.has_role?('Staff') %>
+        <th>Edit</th>
+        <th>Show</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td>
+          <% if current_user.has_role?('Admin') %>
+            <%= button_to "Edit", edit_product_path(product), method: :get, class: "btn btn-primary btn-sm" %>
+          <% elsif current_user.has_role?('Staff') %>
+            <%= button_to "Edit", edit_product_path(product), method: :get, class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </td>
+        <% if current_user.has_role?('Admin') %>
+          <td>
+            <%= button_to "Delete", product_path(product), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
+          </td>
+          <td>
+            <%= button_to "Show", product_path(product), method: :get, class: "btn btn-info btn-sm" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table
