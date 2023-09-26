@@ -4,15 +4,15 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def new
-    @product = product.new
+    @product = Product.new
   end
 
   def create
-    @product = product.create(product_params)
+    @product = Product.create(product_params)
     if @product.save
       flash[:notice] = 'You have successfully logged out.'
       redirect_to product_path(@product)
@@ -22,11 +22,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = product.find(params['id'])
+    @product = Product.find(params['id'])
   end
 
   def update
-    @product = product.find(params[:id])
+    @product = Product.find(params[:id])
 
     if @product.update!(product_params)
       redirect_to product_path(@product)
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = product.find(params[:id])
+    @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_path, status: :see_other
   end
@@ -44,6 +44,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :product_quantity, :price)
+    params.require(:product).permit(:title, :description, :product_quantity, :product_stock_quantity, :price)
   end
 end
