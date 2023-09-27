@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+.product-image {
+  border: 1px solid black;
+  transition: transform 0.3s;
+}
+.product-image:hover {
+  transform: scale(1.1);
+}
+.card-title {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.card-title::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #333;
+  transition: width 0.3s;
+}
+.card-title:hover::before {
+  width: 100%;
+}
