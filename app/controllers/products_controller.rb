@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
+  before_action :find_product_id, except: %i[index new create]
   def index
     @products = Product.all
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def new
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     if @product.save
-      flash[:notice] = 'You have successfully logged out.'
+      flash[:notice] = 'Product created'
       redirect_to product_path(@product)
     else
       render :new, status: :unprocessable_entity
@@ -22,12 +22,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params['id'])
   end
 
   def update
-    @product = Product.find(params[:id])
-
     if @product.update!(product_params)
       redirect_to product_path(@product)
     else
@@ -36,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    flash[:notice] = 'Product deleted'
     @product.destroy
     redirect_to products_path, status: :see_other
   end
@@ -52,6 +49,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def find_product_id
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:title, :description, :product_quantity, :product_stock_quantity, :price, :image)
