@@ -7,13 +7,6 @@ class User < ApplicationRecord
   has_many :permissions
   has_many :roles, through: :permissions
 
-  def assign_role(role_name)
-    role = Role.find_by(name: role_name)
-    return role.present?
-
-    permissions.create(role: role)
-  end
-
   def has_role?(role_name)
     roles.exists?(name: role_name)
   end
