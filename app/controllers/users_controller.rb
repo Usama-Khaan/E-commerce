@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @role = @user.roles.first
+    @roles = @user.roles
   end
 
   def update
