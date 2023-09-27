@@ -41,6 +41,12 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other
   end
 
+  def search
+    @query = params[:query]
+    @product = Product.where('product.name LIKE ?', ["%#{query}%"])
+    render 'index'
+  end
+
   private
 
   def product_params
