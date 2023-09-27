@@ -43,7 +43,11 @@ class ProductsController < ApplicationController
 
   def search
     @query = params[:query]
-    @product = Product.where('product.name LIKE ?', ["%#{query}%"])
+    if @query.to_i.to_s == @query
+      @products = Product.where('price::text ILIKE ?', "%#{@query}%")
+    else
+      @products = Product.where('title ILIKE ?', "%#{@query}%")
+    end
     render 'index'
   end
 
