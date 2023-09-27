@@ -1,19 +1,17 @@
 class UsersController < ApplicationController
+  before_action :find_user_id, except: %i[index]
   def index
     @users = User.all
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def show
-    @user = User.find(params[:id])
     @role = @user.roles.first
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to root_path
     else
@@ -22,9 +20,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to root_path, status: :see_other
+  end
+
+  private
+
+  def find_user_id
+    @user = User.find(params[:id])
   end
 
   def user_params
