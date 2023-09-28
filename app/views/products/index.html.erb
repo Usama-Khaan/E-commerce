@@ -3,11 +3,14 @@
   <div class="row">
     <div class="col mb-3">
       <form class="d-flex" action="/search">
-        <input class="form-control me-2" type="search" placeholder="Search by Name & Price" aria-label="Search" name="query">
+        <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="name_query">
+        <input class="form-control me-2" type="search" placeholder="Min price" aria-label="Search" name="min_price">
+        <input class="form-control me-2" type="search" placeholder="Max price" aria-label="Search" name="max_price">
         <button class="btn btn-success" type="submit">Search</button>
       </form>
     </div>
   </div>
+
   <% if @products.empty? %>
     <div class="alert alert-danger" role="alert">
       Product not found.
