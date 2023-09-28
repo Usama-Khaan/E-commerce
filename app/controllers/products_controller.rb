@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product_id, except: %i[index new create]
+  before_action :find_product_id, only: %i[edit show update destroy]
   def index
     @products = Product.all
   end
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update!(product_params)
+    if @product.update(product_params)
       redirect_to product_path(@product)
     else
       render :edit, status: :unprocessable_entity
