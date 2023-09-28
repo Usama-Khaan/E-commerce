@@ -32,8 +32,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    flash[:notice] = 'Product deleted'
+    if @product.destroy
+      flash[:notice] = 'Product deleted'
+    else
+      flash[:alert] = 'Failed to delete product'
+    end
     redirect_to products_path, status: :see_other
   end
 
@@ -47,12 +50,12 @@ class ProductsController < ApplicationController
       product_scope = product_scope.where('title ILIKE ?', "%#{@name_query}%")
     end
 
-    if min_price.present? && /^\d+$/.match?(min_price)
-      product_scope = product_scope.where('price >= ?', min_price)
+    if min_price.present? && VALIDATE_DIGIT.match?(min_price)
+      product_scope = filter_by_min_price(product_scope, min_price)
     end
 
-    if max_price.present? && /^\d+$/.match?(max_price)
-      product_scope = product_scope.where('price <= ?', max_price)
+    if max_price.present? && VALIDATE_DIGIT.match?(max_price)
+      product_scope = filter_by_max_price(product_scope, max_price)
     end
 
     @products = product_scope
@@ -60,6 +63,16 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  VALIDATE_DIGIT = /^\d+$/
+
+  def filter_by_min_price(scope, min_price)
+    scope.where('price >= ?', min_price)
+  end
+
+  def filter_by_max_price(scope, max_price)
+    scope.where('price <= ?', max_price)
+  end
 
   def find_product_id
     @product = Product.find(params[:id])
