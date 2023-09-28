@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :find_user_id, except: %i[index]
+  before_action :find_user_id, except: :index
+
   def index
     @users = User.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @roles = @user.roles
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:notice] = 'User data updated'
       redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    flash[:notice] = 'User deleted'
     redirect_to root_path, status: :see_other
   end
 
