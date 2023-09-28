@@ -13,6 +13,41 @@
  *= require_tree .
  *= require_self
  */
+.custom-product-input {
+  border-radius: 2px;
+  border-color: black;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  width: 100%;
+  max-width: 500px;
+  padding: 5px;
+  margin-right: 5px;
+  box-sizing: border-box;
+}
+
+.search-button {
+  background-color: green;
+  text-align: center;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 120px;
+  color: white;
+  border-style: none;
+  padding: 10px 20px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .custom-product-input {
+    max-width: 100%;
+    margin-right: 0;
+  }
+  .search-button {
+    max-width: 100%;
+  }
+}
+
 .product-image {
   border: 1px solid black;
   transition: transform 0.3s;
