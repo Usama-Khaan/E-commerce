@@ -5,10 +5,11 @@
       <th>Email</th>
       <% if current_user.has_role?('Admin') %>
         <th>Edit</th>
+        <th>Preview</th>
         <th>Delete</th>
-        <th>Show</th>
       <% elsif current_user.has_role?('Staff') %>
         <th>Edit</th>
+        <th>Preview</th>
       <% end %>
     </tr>
   </thead>
@@ -16,20 +17,12 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td>
-          <% if current_user.has_role?('Admin') %>
-            <%= button_to "Edit", edit_user_path(user), method: :get, class: "btn btn-primary btn-sm" %>
-          <% elsif current_user.has_role?('Staff') %>
-            <%= button_to "Edit", edit_user_path(user), method: :get, class: "btn btn-primary btn-sm" %>
-          <% end %>
-        </td>
+        <% if current_user.has_role?('Admin') || current_user.has_role?('Staff') %>
+          <td><%= button_to "Edit", edit_user_path(user), method: :get, class: "btn btn-primary btn-sm" %></td>
+          <td><%= button_to "Show", user_path(user), method: :get, class: "btn btn-info btn-sm" %></td>
+        <% end %>
         <% if current_user.has_role?('Admin') %>
-          <td>
-            <%= button_to "Delete", user_path(user), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %>
-          </td>
-          <td>
-            <%= button_to "Show", user_path(user), method: :get, class: "btn btn-info btn-sm" %>
-          </td>
+          <td><%= button_to "Delete", user_path(user), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
