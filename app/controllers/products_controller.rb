@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
   before_action :find_product_id, only: %i[edit show update destroy]
+
   def index
     @products = Product.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @product = Product.new
@@ -21,8 +21,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @product.update(product_params)
@@ -33,18 +32,30 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Product deleted'
     @product.destroy
+    flash[:notice] = 'Product deleted'
     redirect_to products_path, status: :see_other
   end
 
   def search
-    @query = params[:query]
-    if @query.to_i.to_s == @query
-      @products = Product.where('price::text ILIKE ?', "%#{@query}%")
-    else
-      @products = Product.where('title ILIKE ?', "%#{@query}%")
+    @name_query = params[:name_query]
+    min_price = params[:min_price]
+    max_price = params[:max_price]
+    product_scope = Product.all
+
+    if @name_query.present?
+      product_scope = product_scope.where('title ILIKE ?', "%#{@name_query}%")
     end
+
+    if min_price.present? && /^\d+$/.match?(min_price)
+      product_scope = product_scope.where('price >= ?', min_price)
+    end
+
+    if max_price.present? && /^\d+$/.match?(max_price)
+      product_scope = product_scope.where('price <= ?', max_price)
+    end
+
+    @products = product_scope
     render 'index'
   end
 
