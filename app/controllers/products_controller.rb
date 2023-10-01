@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product_id, only: %i[edit show update destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page])
   end
 
   def show; end

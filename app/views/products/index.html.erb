@@ -38,4 +38,5 @@
     </tbody>
   </table>
   <%= button_to "New product", new_product_path, method: :get, class: "btn btn-primary" %>
+  <div class="d-flex justify-content-center"><%= paginate @products %></div>
 </div>
