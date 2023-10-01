@@ -1,21 +1,24 @@
-<h1>System Users</h1>
-<table class="table table-hover" class="table table-hover">
-  <thead>
-    <tr class="table-active">
-      <th>Email</th>
-      <% if current_user.has_role?('Admin') %>
-        <th>Edit</th>
-        <th>Preview</th>
-        <th>Delete</th>
-      <% elsif current_user.has_role?('Staff') %>
-        <th>Edit</th>
-        <th>Preview</th>
+<div class="container-fluid">
+  <h1>System Users</h1>
+  <table class="table table-hover" class="table table-hover">
+    <thead>
+      <tr class="table-active">
+        <th>Email</th>
+        <% if current_user.has_role?('Admin') %>
+          <th>Edit</th>
+          <th>Preview</th>
+          <th>Delete</th>
+        <% elsif current_user.has_role?('Staff') %>
+          <th>Edit</th>
+          <th>Preview</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <%= render partial: 'shared/role_assigning_buttons', locals: { item: user } %>
       <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <%= render partial: 'shared/role_assigning_buttons', locals: { item: user } %>
-    <% end %>
-  </tbody>
-</table
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center"><%= paginate @users %></div>
+</div>
