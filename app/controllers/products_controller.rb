@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
     @name_query = params[:name_query]
     min_price = params[:min_price]
     max_price = params[:max_price]
-    product_scope = Product.all
+    product_scope = Product.all.page(params[:page])
 
     if @name_query.present?
       product_scope = product_scope.where('title ILIKE ?', "%#{@name_query}%")
