@@ -2,17 +2,19 @@
   <div>
     <%= form.label :username %><br>
     <%= form.text_field :username %>
-    <% user.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= render partial: 'errors', locals: { field_name: :username } %>
   </div>
 
   <div>
     <%= form.label :email %><br>
     <%= form.text_area :email %><br>
-    <% user.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= render partial: 'errors', locals: { field_name: :email } %>
+  </div>
+
+  <div>
+    <%= form.label :role_ids, 'Assign Role:' %>
+    <%= form.select :role_ids, Role.all.map { |role| [role.name, role.id] }, {}, multiple: true %>
+    <%= render partial: 'errors', locals: { field_name: :role_ids } %>
   </div>
 
   <div>
