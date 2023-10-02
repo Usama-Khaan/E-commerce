@@ -1,8 +1,18 @@
 class ProductsController < ApplicationController
   before_action :find_product_id, only: %i[edit show update destroy]
 
+  VALIDATE_DIGIT = /^\d+$/
+
   def index
     @products = Product.all
+    @name_query = params[:name_query]
+    min_price = params[:min_price]
+    max_price = params[:max_price]
+
+    @products = filter_products_by_name_query(@products, @name_query)
+    @products = price_range_filter(@products, min_price, max_price)
+
+    render 'index'
   end
 
   def show; end
@@ -40,38 +50,21 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other
   end
 
-  def search
-    @name_query = params[:name_query]
-    min_price = params[:min_price]
-    max_price = params[:max_price]
-    product_scope = Product.all
-
-    if @name_query.present?
-      product_scope = product_scope.where('title ILIKE ?', "%#{@name_query}%")
-    end
-
-    if min_price.present? && VALIDATE_DIGIT.match?(min_price)
-      product_scope = filter_by_min_price(product_scope, min_price)
-    end
-
-    if max_price.present? && VALIDATE_DIGIT.match?(max_price)
-      product_scope = filter_by_max_price(product_scope, max_price)
-    end
-
-    @products = product_scope
-    render 'index'
-  end
-
   private
 
-  VALIDATE_DIGIT = /^\d+$/
-
-  def filter_by_min_price(scope, min_price)
-    scope.where('price >= ?', min_price)
+  def filter_products_by_name_query(products, name_query)
+    return products unless name_query.present?
+    products.where('title ILIKE ?', "%#{name_query}%")
   end
 
-  def filter_by_max_price(scope, max_price)
-    scope.where('price <= ?', max_price)
+  def price_range_filter(scope, min_price, max_price)
+    price_types = { min: min_price, max: max_price }
+    price_types.each do |type, price|
+      next unless price.present? && VALIDATE_DIGIT.match?(price)
+      operator = type == :min ? '>=' : '<='
+      scope = scope.where("price #{operator} ?", price)
+    end
+    scope
   end
 
   def find_product_id
