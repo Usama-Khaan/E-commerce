@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product_id, only: %i[edit show update destroy]
-
+  VALIDATE_DIGIT = /^\d+$/
+  
   def index
     @products = Product.all.page(params[:page])
   end
@@ -63,8 +64,6 @@ class ProductsController < ApplicationController
   end
 
   private
-
-  VALIDATE_DIGIT = /^\d+$/
 
   def filter_by_min_price(scope, min_price)
     scope.where('price >= ?', min_price)
