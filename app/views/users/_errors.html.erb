@@ -1,5 +1,3 @@
 <% @user.errors.full_messages_for(field_name || :base).each do |message| %>
-  <div class="text-danger">
-    <%= message %>
-  </div>
+  <div class="text-danger"><%= message %></div>
 <% end %>

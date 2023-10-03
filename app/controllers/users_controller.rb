@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user_id, except: :index
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
   def edit; end

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @name_query = params[:name_query]
     min_price = params[:min_price]
     max_price = params[:max_price]
-    product_scope = Product.all
+    product_scope = Product.all.page(params[:page])
     product_scope = product_scope.where('title ILIKE ?', "%#{@name_query}%") if @name_query.present?
     @products = filter_by_price_range(product_scope, min_price, max_price)
   end
