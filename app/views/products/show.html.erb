@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card card-depth rounded border-dark mb-3" style="max-width: 840px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= image_tag(@product.image, class: "img-fluid rounded-start product-image", alt: @product.title) %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= @product.title %></h5>
+          <p class="card-text">Description: <%= @product.description %></p>
+          <p class="card-text">Price: <%= number_to_currency(@product.price) %></p>
+          <p class="card-text">Stock Quantity: <%= @product.product_stock_quantity %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

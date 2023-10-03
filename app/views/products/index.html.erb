@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <h1>Products</h1>
+  <div class="text-right bg-light"><%= button_to "New", new_product_path, method: :get, class: "custom-button" %></div>
+  <div class="row">
+    <div class="col mb-3">
+      <form class="d-flex" action="/products" method="GET">
+        <input class="custom-product-input" type="search" placeholder="Name" name="name_query">
+        <input class="custom-product-input" type="search" placeholder="Min price" name="min_price">
+        <input class="custom-product-input" type="search" placeholder="Max price" name="max_price">
+        <button class="search-button" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <% if @products.empty? %>
+  <div class="alert alert-danger" role="alert"> Product not found </div>
+  <% else %>
+    <table class="table table-hover">
+      <thead>
+        <tr class="table-active">
+          <th>Name</th>
+          <% if current_user.has_role?('Admin') %>
+            <th>Edit</th>
+            <th>Preview</th>
+            <th>Delete</th>
+          <% elsif current_user.has_role?('Staff') %>
+            <th>Edit</th>
+            <th>Preview</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <%= render partial: 'shared/role_assigning_buttons', locals: { item: product } %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

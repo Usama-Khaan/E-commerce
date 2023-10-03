@@ -1,0 +1,21 @@
+<tr>
+  <% if item.is_a?(User) %>
+    <td><%= item.email %></td>
+    <% if current_user.has_role?('Admin') || current_user.has_role?('Staff') %>
+      <td><%= button_to "Edit", edit_user_path(item), method: :get, class: "btn btn-primary btn-sm" %></td>
+      <td><%= button_to "Show", user_path(item), method: :get, class: "btn btn-info btn-sm" %></td>
+    <% end %>
+    <% if current_user.has_role?('Admin') %>
+      <td><%= button_to "Delete", user_path(item), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  <% elsif item.is_a?(Product) %>
+    <td><%= item.title %></td>
+    <% if current_user.has_role?('Admin') || current_user.has_role?('Staff') %>
+      <td><%= button_to "Edit", edit_product_path(item), method: :get, class: "btn btn-primary btn-sm" %></td>
+      <td><%= button_to "Show", product_path(item), method: :get, class: "btn btn-info btn-sm" %></td>
+    <% end %>
+    <% if current_user.has_role?('Admin') %>
+      <td><%= button_to "Delete", product_path(item), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  <% end %>
+</tr>
