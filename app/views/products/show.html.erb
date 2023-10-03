@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
   <div class="card card-depth rounded border-dark mb-3" style="max-width: 840px;">
     <div class="row g-0">
       <div class="col-md-4">
@@ -10,6 +10,7 @@
           <p class="card-text">Description: <%= @product.description %></p>
           <p class="card-text">Price: <%= number_to_currency(@product.price) %></p>
           <p class="card-text">Stock Quantity: <%= @product.product_stock_quantity %></p>
+          <button class="btn btn-primary btn-block" type="button">Add to cart</button>
         </div>
       </div>
     </div>
