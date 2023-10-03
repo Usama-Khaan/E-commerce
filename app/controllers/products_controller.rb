@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product_id, only: %i[edit show update destroy]
+  before_action :find_product, only: %i[edit show update destroy]
 
   VALIDATE_DIGIT = /^\d+$/
 
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
     scope
   end
 
-  def find_product_id
+  def find_product
     @product = Product.find(params[:id])
   end
 
