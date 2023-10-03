@@ -8,5 +8,4 @@ Rails.application.routes.draw do
 
   resources :users
   resources :products
-  get '/search', to: 'products#search'
 end

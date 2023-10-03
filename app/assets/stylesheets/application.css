@@ -13,6 +13,17 @@
  *= require_tree .
  *= require_self
  */
+.custom-button {
+  background-color: #0275d8;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 120px;
+  color: white;
+  border-style: none;
+  padding: 10px 20px;
+  margin-top: 5px;
+}
+
 .custom-product-input {
   border-radius: 2px;
   border-color: black;
