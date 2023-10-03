@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <h1>All Products</h1>
+  <h1>Products</h1>
+  <div class="text-right bg-light">
+    <%= button_to "New product", new_product_path, method: :get, class: "btn btn-primary" %>
+  </div>
   <div class="row">
     <div class="col mb-3">
       <form class="d-flex" action="/products" method="GET">
@@ -34,6 +37,5 @@
         <% end %>
       </tbody>
     </table>
-    <%= button_to "New product", new_product_path, method: :get, class: "btn btn-primary" %>
   <% end %>
 </div>
