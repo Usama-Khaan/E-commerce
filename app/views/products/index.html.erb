@@ -1,8 +1,6 @@
 <div class="container-fluid">
   <h1>Products</h1>
-  <div class="text-right bg-light">
-    <%= button_to "New product", new_product_path, method: :get, class: "btn btn-primary" %>
-  </div>
+  <div class="text-right bg-light"><%= button_to "New", new_product_path, method: :get, class: "custom-button" %></div>
   <div class="row">
     <div class="col mb-3">
       <form class="d-flex" action="/products" method="GET">
