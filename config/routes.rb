@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :products
-  resources :carts, only: [:show, :destroy] do
-    post 'add/:product_id', to: 'carts#add_to_cart', on: :member, as: 'add_product'
-    delete 'remove/:product_id', to: 'carts#remove_from_cart', on: :member, as: 'remove_product'
+  resources :carts, except: %i[index new] do
+    get 'add_product/:id', to: 'carts#add_product', as: 'add_product'
+    delete 'remove_product/:id', to: 'carts#remove_product', as: 'remove_product'
   end
 end
