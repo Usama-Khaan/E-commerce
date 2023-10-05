@@ -13,9 +13,31 @@
  *= require_tree .
  *= require_self
  */
+.shopping-bag {
+  font-size: 48px;
+  color: black;
+}
+
+.shopping-bag:hover {
+  color: yellowgreen;
+}
+
+.my-cart {
+  color: black;
+}
+
+.custom-cart-icon {
+  font-size: 20px;
+  color: white;
+}
+
+.custom-cart-icon:hover{
+  color: yellowgreen;
+}
+
 .remove-cart-button{
   border-radius: 20px;
-    width: 265x;
+  width: 265x;
 }
 
 .price-tag {
