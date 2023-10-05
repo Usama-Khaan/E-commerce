@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+.cart-icon {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .tooltip-custom {
   position: relative;
   display: inline-block;
@@ -51,7 +58,7 @@
 }
 
 .shopping-bag {
-  font-size: 48px;
+  font-size: 60px;
   color: black;
 }
 
