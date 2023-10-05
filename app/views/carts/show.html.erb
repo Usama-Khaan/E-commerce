@@ -1,0 +1,30 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <i class="fas fa-shopping-bag shopping-bag"></i>
+      <h1 class="my-cart">My Cart</h1>
+    </div>
+  </div>
+  <div class="row">
+    <% @cart.line_items.each do |line_item| %>
+      <div class="col-md-4 mb-3">
+        <div class="card position-relative">
+          <div class="text-center">
+            <%= image_tag(line_item.product.image, class: "card-img-top mx-auto", alt: line_item.product.title) %>
+            <span class="price-tag"><%= number_to_currency(line_item.product.price) %></span>
+          </div>
+          <div class="card-body text-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <input type="text" id="quantity_<%= line_item.product.id %>" class="quantity-input" value="<%= "5" %>">
+              <button type="button" onclick="updateQuantity('<%= line_item.product.product_quantity %>', 'increase')" class="btn btn-primary">+</button>
+              <button type="button" onclick="updateQuantity('<%= line_item.product.product_quantity %>', 'decrease')" class="btn btn-secondary">-</button>
+            </div>
+            <div class="card-body text-center">
+              <%= button_to 'Remove', cart_remove_product_path(id: line_item.product.id, cart_id: @cart.id), method: :delete, data: { confirm: 'Are you sure you want to remove this item from the cart?' }, class: 'btn btn-danger btn-block remove-cart-button' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
