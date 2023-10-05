@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.remove-cart-button{
+  border-radius: 20px;
+    width: 265x;
+}
+
 .price-tag {
   position: absolute;
   top: 0;
