@@ -13,6 +13,24 @@
  *= require_tree .
  *= require_self
  */
+.price-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: lightseagreen;
+  padding: 5px 10px;
+  border-radius: 0 0 0 5px;
+}
+
+.card-img-top {
+  height: 400px;
+  transition: transform 0.3s;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+}
+
 .custom-button {
   background-color: #0275d8;
   border-radius: 15px;
