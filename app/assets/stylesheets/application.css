@@ -13,6 +13,43 @@
  *= require_tree .
  *= require_self
  */
+.tooltip-custom {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-custom .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-custom:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.remove-all-button{
+  width: 100px;
+}
+
+.cart-title-counter {
+  font-size: 35px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: black;
+}
+
 .shopping-bag {
   font-size: 48px;
   color: black;
@@ -20,10 +57,6 @@
 
 .shopping-bag:hover {
   color: yellowgreen;
-}
-
-.my-cart {
-  color: black;
 }
 
 .custom-cart-icon {
