@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   include FindProduct
-  before_action :check_user_cart, :find_product, only: %i[add_product remove_product]
+  before_action :find_product, only: %i[add_product remove_product]
+  before_action :check_user_cart
 
   def add_product
     line_item = @cart.line_items.build(product: @product)
@@ -12,9 +13,12 @@ class CartsController < ApplicationController
     redirect_to cart_path(@cart), notice: 'Product removed from cart.'
   end
 
-  def show
-    @cart = current_user.cart
+  def clear_cart
+    @cart.products.destroy_all
+    redirect_to cart_path(@cart), notice: 'Cart cleared.'
   end
+
+  def show; end
 
   private
 
