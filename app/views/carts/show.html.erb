@@ -20,14 +20,14 @@
     <% @cart.line_items.each do |line_item| %>
       <div class="col-md-4 mb-3">
         <div class="card position-relative">
-          <div class="text-center">
+          <div class="text-center product-details" data-product-price="<%= line_item.product.price %>">
             <%= image_tag(line_item.product.image, class: "card-img-top mx-auto", alt: line_item.product.title) %>
             <span class="price-tag"><%= number_to_currency(line_item.product.price) %></span>
           </div>
           <div class="card-body text-center">
             <div class="input-group">
               <%= button_tag '+', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'increment' } %>
-              <%= number_field_tag 'quantity[]', 1, min: 0, class: 'quantity-input form-control increment-decrement-field' %>
+              <%= number_field_tag 'quantity[]', line_item.product.product_quantity, { class: 'quantity-input form-control increment-decrement-field', min: 1 } %>
               <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement' } %>
             </div>
             <div class="card-body text-center">
