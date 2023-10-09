@@ -13,7 +13,7 @@ class CartsController < ApplicationController
     redirect_to cart_path(@cart), notice: 'Product removed from cart.'
   end
 
-  def clear_cart
+  def reset
     @cart.products.destroy_all
     redirect_to cart_path(@cart), notice: 'Cart cleared.'
   end

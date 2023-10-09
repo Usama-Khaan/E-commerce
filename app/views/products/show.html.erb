@@ -11,7 +11,7 @@
           <p class="card-text">Price: <%= number_to_currency(@product.price) %></p>
           <p class="card-text">Stock Quantity: <%= @product.product_stock_quantity %></p>
           <% @cart = current_user.cart || current_user.create_cart %>
-          <%= link_to 'Add to Cart',  cart_add_product_path(id: @product.id, cart_id: @cart.id), class: 'btn btn-primary btn-block' %>
+          <%= link_to 'Add to Cart',  add_product_cart_path(id: @product.id, cart_id: @cart.id), class: 'btn btn-primary btn-block' %>
         </div>
       </div>
     </div>
