@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="row">
-    <% @cart.line_items.each do |line_item| %>
+    <% @cart.line_items.each_with_index do |line_item, index| %>
       <div class="col-md-4 mb-3">
         <div class="card position-relative">
           <div class="text-center product-details" data-product-price="<%= line_item.product.price %>">
@@ -26,9 +26,9 @@
           </div>
           <div class="card-body text-center">
             <div class="input-group">
-              <%= button_tag '+', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'increment' } %>
-              <%= number_field_tag 'quantity[]', line_item.product.product_quantity, { class: 'quantity-input form-control increment-decrement-field', min: 1 } %>
-              <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement' } %>
+              <%= button_tag '+', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'increment', index: index } %>
+              <%= number_field_tag "quantity[#{index}]", line_item.product.product_quantity, { class: 'quantity-input form-control increment-decrement-field', min: 1 } %>
+              <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement', index: index } %>
             </div>
             <div class="card-body text-center">
               <%= button_to 'Remove', remove_product_cart_path(id: line_item.product.id, cart_id: @cart.id), method: :delete, data: { confirm: 'Are you sure you want to remove this item from the cart?' }, class: 'btn btn-danger btn-block remove-cart-button' %>
