@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function formatNumberAsCurrency(number, currencySymbol = '$') {
     const roundedNumber = number.toFixed(2);
-    const thousandsSeparatorPattern = /\d(?=(\d{3})+\.)/g;
-    const formattedNumber = roundedNumber.replace(thousandsSeparatorPattern, '$&,');
+    const THOUSANDS_SEPARATOR_PATTERN = /\d(?=(\d{3})+\.)/g;
+    const formattedNumber = roundedNumber.replace(THOUSANDS_SEPARATOR_PATTERN, '$&,');
     return currencySymbol + formattedNumber;
   }
 });
