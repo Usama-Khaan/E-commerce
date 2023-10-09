@@ -13,6 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.increment-decrement-field{
+  text-align: center;
+}
+
+.increment-decrement-button{
+  width: 50px;
+}
+
 .cart-info{
   display: inline-block
 }
