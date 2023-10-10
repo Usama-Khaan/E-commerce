@@ -13,6 +13,104 @@
  *= require_tree .
  *= require_self
  */
+.increment-decrement-field{
+  text-align: center;
+}
+
+.increment-decrement-button{
+  width: 50px;
+}
+
+.cart-info{
+  display: inline-block
+}
+
+.cart-icon {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.tooltip-custom {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-custom .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 110%;
+  margin-top: -20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-custom:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.remove-all-button{
+  width: 100px;
+}
+
+.cart-title-counter {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.shopping-bag {
+  font-size: 60px;
+  color: black;
+  display: inline-block;
+}
+
+.shopping-bag:hover {
+  color: yellowgreen;
+}
+
+.custom-cart-icon {
+  font-size: 20px;
+  color: white;
+}
+
+.custom-cart-icon:hover{
+  color: yellowgreen;
+}
+
+.remove-cart-button{
+  border-radius: 20px;
+  width: 265x;
+}
+
+.price-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: lightseagreen;
+  padding: 5px 10px;
+  border-radius: 0 0 0 5px;
+}
+
+.card-img-top {
+  height: 400px;
+  transition: transform 0.3s;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+}
+
 .custom-button {
   background-color: #0275d8;
   border-radius: 15px;

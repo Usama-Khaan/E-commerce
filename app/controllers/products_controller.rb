@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include FindProduct
   before_action :find_product, only: %i[edit show update destroy]
 
   VALIDATE_DIGIT = /^\d+$/
@@ -53,10 +54,6 @@ class ProductsController < ApplicationController
     scope = scope.where('price >= ?', min_price) if min_price.present? && VALIDATE_DIGIT.match?(min_price)
     scope = scope.where('price <= ?', max_price) if max_price.present? && VALIDATE_DIGIT.match?(max_price)
     scope
-  end
-
-  def find_product
-    @product = Product.find(params[:id])
   end
 
   def product_params

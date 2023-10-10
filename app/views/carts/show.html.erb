@@ -1,0 +1,41 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-2 mb-3 cart-info">
+      <i class="fas fa-shopping-bag shopping-bag"></i>
+      <p class="cart-title-counter">items:<%= @cart.line_items.count %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1 mb-4 ">
+      <div class="tooltip-custom">
+        <%= button_to 'Clear Cart', reset_cart_path(@cart), method: :delete, class: 'btn btn-danger remove-all-button' %>
+        <div class="tooltiptext">Remove all products from cart</div>
+      </div>
+    </div>
+    <div class="col-md-11 mb-4 text-right">
+      <%= button_to 'Continue shopping', products_path, method: :get, class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <div class="row">
+    <% @cart.line_items.each_with_index do |line_item, index| %>
+      <div class="col-md-4 mb-3">
+        <div class="card position-relative">
+          <div class="text-center product-details" data-product-price="<%= line_item.product.price %>">
+            <%= image_tag(line_item.product.image, class: "card-img-top mx-auto", alt: line_item.product.title) %>
+            <span class="price-tag"><%= number_to_currency(line_item.product.price) %></span>
+          </div>
+          <div class="card-body text-center">
+            <div class="input-group">
+              <%= button_tag '+', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'increment', index: index } %>
+              <%= number_field_tag "quantity[#{index}]", line_item.product.product_quantity, { class: 'quantity-input form-control increment-decrement-field', min: 1 } %>
+              <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement', index: index } %>
+            </div>
+            <div class="card-body text-center">
+              <%= button_to 'Remove', remove_product_cart_path(id: line_item.product.id, cart_id: @cart.id), method: :delete, data: { confirm: 'Are you sure you want to remove this item from the cart?' }, class: 'btn btn-danger btn-block remove-cart-button' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
