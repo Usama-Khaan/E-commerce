@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   resources :products
   resources :carts, except: %i[index new] do
     member do
-      get 'add_product'
-      delete 'remove_product'
-      delete 'reset'
+      get :add_product
+      delete :remove_product
+      delete :reset
     end
   end
 end

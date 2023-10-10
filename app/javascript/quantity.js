@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const quantityInputs = document.querySelectorAll('.quantity-input');
   const priceTags = document.querySelectorAll('.price-tag');
-  const Inc_Or_Dec_Btn = document.getElementsByClassName('increment-decrement-button');
+  const increaseOrDecreaseBtn = document.getElementsByClassName('increment-decrement-button');
+  const THOUSANDS_SEPARATOR_PATTERN = /\d(?=(\d{3})+\.)/g;
 
   function handleQuantityChange(index, increment) {
     const currentValue = parseInt(quantityInputs[index].value);
@@ -33,16 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function formatNumberAsCurrency(number, currencySymbol = '$') {
     const roundedNumber = number.toFixed(2);
-    const THOUSANDS_SEPARATOR_PATTERN = /\d(?=(\d{3})+\.)/g;
     const formattedNumber = roundedNumber.replace(THOUSANDS_SEPARATOR_PATTERN, '$&,');
     return currencySymbol + formattedNumber;
   }
 
-  for(let i=0;i<Inc_Or_Dec_Btn.length;i++)
+  for( let i = 0; i < increaseOrDecreaseBtn.length; i++ )
   {
-    let incOrDec = Inc_Or_Dec_Btn[i].dataset['action'] == 'increment' ? true : false
-    let index = Inc_Or_Dec_Btn[i].dataset['index'];
-    Inc_Or_Dec_Btn[i].addEventListener('click', () => {
+    let incOrDec = increaseOrDecreaseBtn[i].dataset['action'] == 'increment' ? true : false
+    let index = increaseOrDecreaseBtn[i].dataset['index'];
+    increaseOrDecreaseBtn[i].addEventListener('click', () => {
       handleQuantityChange(index,incOrDec);
     });
   }
