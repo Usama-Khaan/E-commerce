@@ -38,7 +38,6 @@
         <%= form.text_field :city, class: "form-control" %>
         <%= render partial: 'errors', locals: { field_name: :city } %>
       </div>
-
       <div class="col">
         <%= form.label :postal_code, class: "form-label" %>
         <%= form.number_field :postal_code, class: "form-control" %>
@@ -52,7 +51,7 @@
     </div>
 
     <div class="d-grid gap-2 col-2 mx-auto">
-      <%= form.submit class: "btn btn-primary btn-lg" %>
+      <%= form.submit "Place Order", class: "btn btn-warning btn-block order-button" %>
     </div>
   <% end %>
 </div>
