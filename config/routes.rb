@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     session: 'users/sessions'
   }
 
-  resources :orders, except: %i[update]
+  resources :orders, except: %i[update edit]
   resources :users
   resources :products
   resources :carts, except: %i[index new] do
