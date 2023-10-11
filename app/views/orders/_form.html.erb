@@ -1,0 +1,58 @@
+<div class="custom-border mb-5">
+  <%= form_with model: @order do |form| %>
+
+    <div class="mb-3">
+      <%= form.label :email, class: "form-label" %>
+      <%= form.text_field :email, class: "form-control" %>
+      <%= render partial: 'errors', locals: { field_name: :email } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :country, class: "form-label" %>
+      <%= form.text_field :country, class: "form-control", rows: 3 %>
+      <%= render partial: 'errors', locals: { field_name: :country } %>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <%= form.label :first_name, class: "form-label" %>
+        <%= form.text_field :first_name, class: "form-control" %>
+        <%= render partial: 'errors', locals: { field_name: :first_name } %>
+      </div>
+      <div class="col">
+        <%= form.label :last_name, class: "form-label" %>
+        <%= form.text_field :last_name, class: "form-control" %>
+        <%= render partial: 'errors', locals: { field_name: :last_name } %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :address, class: "form-label" %>
+      <%= form.text_field :address, class: "form-control", rows: 3  %>
+      <%= render partial: 'errors', locals: { field_name: :address }  %>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <%= form.label :city, class: "form-label" %>
+        <%= form.text_field :city, class: "form-control" %>
+        <%= render partial: 'errors', locals: { field_name: :city } %>
+      </div>
+
+      <div class="col">
+        <%= form.label :postal_code, class: "form-label" %>
+        <%= form.number_field :postal_code, class: "form-control" %>
+        <%= render partial: 'errors', locals: { field_name: :postal_code } %>
+      </div>
+      <div class="col">
+        <%= form.label :phone_number, class: "form-label" %>
+        <%= form.number_field :phone_number, class: "form-control" %>
+        <%= render partial: 'errors', locals: { field_name: :phone_number } %>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 col-2 mx-auto">
+      <%= form.submit class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>

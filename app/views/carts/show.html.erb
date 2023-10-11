@@ -25,7 +25,7 @@
           <div class="card-body text-center">
             <div class="input-group">
               <%= button_tag '+', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'increment', index: index } %>
-              <%= number_field_tag "quantity[#{index}]", line_item.line_items_quantity, { class: 'quantity-input form-control increment-decrement-field' } %>
+              <%= number_field_tag "quantity[#{index}]", line_item.line_items_quantity, { class: 'quantity-input form-control increment-decrement-field', readonly: true} %>
               <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement', index: index } %>
             </div>
             <div class="card-body text-center">
@@ -40,7 +40,7 @@
   <div class="col-md-20 mb-5">
     <div class="text-right">
       <h4>Total Price: <span id="total-price"><%= number_to_currency(total_price) %></span></h4>
-      <%= button_to 'Checkout', products_path, method: :get, class: 'btn btn-warning checkout-button' %>
+      <%= button_to 'Checkout', new_order_path(@order), method: :get, class: 'btn btn-warning checkout-button' %>
     </div>
   </div>
 </div>
