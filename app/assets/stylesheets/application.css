@@ -13,9 +13,30 @@
  *= require_tree .
  *= require_self
  */
+/* styles.css */
+.card-header {
+  text-align: center;
+  background: #fff;
+}
+
+.card-body {
+  border: 1px solid #fff;
+}
+
+.scrollable-products {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.total-cost {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .order-button{
   height: 40px;
-  width: 300px;
+  width: 200px;
   border-radius: 10px;
   color: white;
   font-size: 18px;
