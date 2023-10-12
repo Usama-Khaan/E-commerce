@@ -7,30 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleQuantityChange(index, increment) {
     const currentValue = parseInt(quantityInputs[index].value);
+
     if (increment) {
       quantityInputs[index].value = currentValue + 1;
     } else if (!increment && currentValue > 1) {
       quantityInputs[index].value = currentValue - 1;
     }
-    updateProductPrice(index);
     updateTotalPrice();
-  }
-
-  function updateProductPrice(index) {
-    debugger
-    const quantity = parseInt(quantityInputs[index].value);
-    const productPriceElement = priceTags[index].closest('.product-details');
-    if (productPriceElement) {
-      const productPrice = parseFloat(productPriceElement.getAttribute('data-product-price'));
-      if (!isNaN(productPrice)) {
-        const totalPrice = quantity * productPrice;
-        priceTags[index].textContent = formatNumberAsCurrency(totalPrice);
-      } else {
-        console.error('Invalid product price.');
-      }
-    } else {
-      console.error('Product details element not found.');
-    }
   }
 
   function updateTotalPrice() {
@@ -39,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const quantity = parseInt(quantityInputs[i].value);
       const productPrice = parseFloat(priceTags[i].textContent.replace(/\$|,/g, ''));
       if (!isNaN(quantity) && !isNaN(productPrice)) {
-        totalPrice += productPrice;
+        totalPrice += quantity * productPrice;
       }
     }
     total_price_element.textContent = formatNumberAsCurrency(totalPrice);
@@ -58,4 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
       handleQuantityChange(index, incOrDec);
     });
   }
+  updateTotalPrice();
 });
