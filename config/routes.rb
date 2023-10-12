@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     session: 'users/sessions'
   }
 
+  patch '/update_line_items', to: 'line_items#update_line_items'
   resources :orders, except: %i[update edit]
   resources :users
   resources :products
