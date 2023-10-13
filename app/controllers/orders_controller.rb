@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
-  def show
-    @order = Order.find(params[:id])
-  end
+  before_action :find_order_id, only: %i[show complete]
 
   def new
     @order = Order.new
@@ -18,7 +16,17 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show; end
+
+  def complete
+    OrderNotifierMailer.new_order(current_user, @order).deliver_now
+  end
+
   private
+
+  def find_order_id
+    @order = Order.find_by(id: params[:id])
+  end
 
   def order_params
     params.require(:order).permit(:id, :email, :city, :country, :first_name, :last_name, :address, :postal_code, :phone_number)

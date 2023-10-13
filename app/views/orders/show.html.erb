@@ -8,10 +8,10 @@
         <div class="col-md-6">
           <div class="order-details">
             <p><strong>Email:</strong> <%= @order.email %></p>
+            <p><strong>Name:</strong> <%= @order.first_name %> <%= @order.last_name %> </p>
             <p><strong>Shipping Address:</strong></p>
-            <p><%= @order.first_name %> <%= @order.last_name %></p>
             <p><%= @order.address %></p>
-            <p><%= @order.city %>, <%= @order.country %> <%= @order.postal_code %></p>
+            <p><%= @order.city %> <%= @order.country %> <%= @order.postal_code %></p>
             <p><strong>Phone Number:</strong> <%= @order.phone_number %></p>
             <div>
               <h4><strong>Payment:</strong></h4>
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
-              <%= button_to "Complete Order", complete_order_path, method: :post, remote: true, class: "btn btn-warning order-button" %>
+              <%= button_to "Complete Order", complete_order_path(@order), method: :get, remote: true, class: "btn btn-warning order-button" %>
             </div>
           </div>
         </div>
