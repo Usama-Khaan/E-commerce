@@ -20,6 +20,14 @@ class OrdersController < ApplicationController
 
   def complete
     OrderNotifierMailer.new_order(current_user, @order).deliver_now
+    @cart = @order.cart
+    if @cart
+      @cart.line_items.destroy_all
+      flash[:notice] = "Thanks for ordering our products"
+    else
+      flash[:alert] = "Cart not found."
+    end
+    redirect_to products_path
   end
 
   private
