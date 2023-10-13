@@ -1,5 +1,14 @@
 class OrdersController < ApplicationController
-  before_action :find_order_id, only: %i[show complete]
+  before_action :find_order_id, only: %i[show complete update]
+
+  def update
+    if @order.update(order_params)
+      flash[:notice] = 'Order status updated successfully.'
+    else
+      flash[:alert] = 'Failed to update order status.'
+    end
+    redirect_to user_path(@order.user)
+  end
 
   def new
     @order = Order.new
@@ -37,6 +46,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:id, :email, :city, :country, :first_name, :last_name, :address, :postal_code, :phone_number)
+    params.require(:order).permit(:status, :id, :email, :city, :country, :first_name, :last_name, :address, :postal_code, :phone_number)
   end
 end
