@@ -20,7 +20,7 @@
           <div class="d-flex justify-content-between">
             <span><strong>Order ID: </strong><%= order.id %></span>
             <div class="status-dropdown">
-              <%= form_with(model: order, local: true, html: { class: 'form-inline' }) do |f| %>
+              <%= form_with(model: order, url: order_path(order), method: :patch, local: true, html: { class: 'form-inline' }) do |f| %>
                 <%= f.select :status, ['pending', 'dispatched', 'canceled'], { prompt: 'Select Status' }, class: 'form-control' %>
                 <%= f.submit 'Update', class: 'btn btn-primary ml-2' %>
               <% end %>

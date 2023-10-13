@@ -50,6 +50,8 @@
 <div class="container">
   <h3 class="email-header">Order Details</h3>
   <div class="details">
+    <p class="info"><strong>Status:</strong> <%= @order.status %></p>
+    <p class="info"><strong>Order ID:</strong> <%= @order.id %></p>
     <p class="info"><strong>User ID:</strong> <%= @user.id %></p>
     <p class="info"><strong>Email:</strong> <%= @user.email %></p>
     <p class="info"><strong>Country:</strong> <%= @order.country %></p>
