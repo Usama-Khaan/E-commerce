@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       delete :reset
     end
   end
-  resources :orders, except: %i[update edit] do
+  resources :orders, except: %i[edit] do
     member do
       get :complete
     end
