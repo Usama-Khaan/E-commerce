@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       flash[:notice] = 'Order status updated successfully.'
+      OrderNotifierMailer.order_status_notification(@order, @order.status).deliver_now
     else
       flash[:alert] = 'Failed to update order status.'
     end
