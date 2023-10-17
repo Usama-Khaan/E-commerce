@@ -34,7 +34,7 @@
   margin-bottom: 20px;
 }
 
-.order-button{
+.order-button {
   height: 40px;
   width: 200px;
   border-radius: 10px;
@@ -42,7 +42,7 @@
   font-size: 18px;
 }
 
-.checkout-button{
+.checkout-button {
   width: 300px;
   border-radius: 10px;
   height: 50px;
@@ -51,11 +51,11 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.increment-decrement-field{
+.increment-decrement-field {
   text-align: center;
 }
 
-.increment-decrement-button{
+.increment-decrement-button {
   width: 50px;
 }
 
@@ -106,11 +106,11 @@
   color: white;
 }
 
-.custom-cart-icon:hover{
+.custom-cart-icon:hover {
   color: yellowgreen;
 }
 
-.remove-cart-button{
+.remove-cart-button {
   border-radius: 20px;
   width: 265x;
 }
