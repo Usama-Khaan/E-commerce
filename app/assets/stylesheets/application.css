@@ -13,11 +13,49 @@
  *= require_tree .
  *= require_self
  */
-.increment-decrement-field{
+/* styles.css */
+.card-header {
+  text-align: center;
+  background: #fff;
+}
+
+.card-body {
+  border: 1px solid #fff;
+}
+
+.scrollable-products {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.total-cost {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.order-button {
+  height: 40px;
+  width: 200px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+}
+
+.checkout-button {
+  width: 300px;
+  border-radius: 10px;
+  height: 50px;
+  color: white;
+  font-size: large;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.increment-decrement-field {
   text-align: center;
 }
 
-.increment-decrement-button{
+.increment-decrement-button {
   width: 50px;
 }
 
@@ -63,32 +101,16 @@
   width: 100px;
 }
 
-.cart-title-counter {
-  display: inline-block;
-  margin-left: 5px;
-  font-size: 18px;
-}
-
-.shopping-bag {
-  font-size: 60px;
-  color: black;
-  display: inline-block;
-}
-
-.shopping-bag:hover {
-  color: yellowgreen;
-}
-
 .custom-cart-icon {
   font-size: 20px;
   color: white;
 }
 
-.custom-cart-icon:hover{
+.custom-cart-icon:hover {
   color: yellowgreen;
 }
 
-.remove-cart-button{
+.remove-cart-button {
   border-radius: 20px;
   width: 265x;
 }

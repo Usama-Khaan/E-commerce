@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :permissions, dependent: :destroy
   has_many :roles, through: :permissions
   has_one :cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
   validates :username, :email, presence: true
 
   def has_role?(role_name)

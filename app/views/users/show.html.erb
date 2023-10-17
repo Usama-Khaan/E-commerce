@@ -1,8 +1,35 @@
-<h2><%= 'User Details' %></h2>
-<h4><%= @user.email %></h4>
-<p><%= @user.username %></p>
-<p><%= @user.id %></p>
-<h4>User roles:</h4>
-<% @roles.each do |role| %>
-  <li><%= role.name %></li>
-<% end %>
+<div class="container">
+  <h2 class="my-4">User Details</h2>
+  <div class="card p-3">
+    <p><strong>Email: </strong><%= @user.email %></p>
+    <p><strong>Username: </strong><%= @user.username %></p>
+    <p><strong>User ID: </strong><%= @user.id %></p>
+    <h3>Roles:</h3>
+    <ul class="list-unstyled">
+      <% @roles.each do |role| %>
+        <li><i class="fas fa-check-circle text-success"></i> <%= role.name %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <h2 class="mb-4">Orders</h2>
+  <ul class="list-group">
+    <% if @user.orders.any? %>
+      <% @user.orders.each do |order| %>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <span><strong>Order ID: </strong><%= order.id %></span>
+            <div class="status-dropdown">
+              <%= form_with(model: order, url: order_path(order), method: :patch, local: true, html: { class: 'form-inline' }) do |f| %>
+                <%= f.select :status, ['pending', 'dispatched', 'canceled'], { prompt: 'Select Status' }, class: 'form-control' %>
+                <%= f.submit 'Update', class: 'btn btn-primary ml-2' %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% else %>
+      <li class="list-group-item">No orders placed.</li>
+    <% end %>
+  </ul>
+</div>

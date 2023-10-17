@@ -1,0 +1,27 @@
+<style>
+  .container {
+    background-color: #f5f5f5;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: black;
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+</style>
+
+<div class="container">
+  <h1>Your Order Update</h1>
+  <p>Hello <%= @order.user.username %>,</p>
+  <p>Your order with ID: <%= @order.id %> has been <%= @status %>.</p>
+</div>
