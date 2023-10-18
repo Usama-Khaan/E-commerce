@@ -11,4 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
+
+  def create
+    super do |user|
+      customer_role = Role.find_by(name: 'Customer')
+      user.roles << customer_role if customer_role
+    end
+  end
 end
