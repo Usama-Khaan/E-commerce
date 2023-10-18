@@ -21,4 +21,9 @@ Rails.application.routes.draw do
       get :complete
     end
   end
+  namespace :api do
+    namespace :v1 do
+      resources :products, only: %i[index]
+    end
+  end
 end
