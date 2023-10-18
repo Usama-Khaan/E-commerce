@@ -15,6 +15,8 @@ RSpec.describe "Orders", type: :request do
         post '/orders', params: { order: order_attributes }
         expect(response).to have_http_status(:found)
         expect(Order.count).to eq(1)
+        current_order = Order.first
+        expect(current_order.user).to eq(user)
       end
     end
   end
