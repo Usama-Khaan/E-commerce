@@ -5,18 +5,37 @@ RSpec.describe "Orders", type: :request do
 
   before do
     sign_in user
+    create(:cart, user: user)
   end
 
   describe "POST /create" do
     context "with valid parameters" do
+
+      subject do
+        post '/orders', params: { order: attributes_for(:order) }
+      end
+
       it "creates a new order" do
-        create(:cart, user: user)
-        order_attributes = attributes_for(:order)
-        post '/orders', params: { order: order_attributes }
-        expect(response).to have_http_status(:found)
-        expect(Order.count).to eq(1)
-        current_order = Order.first
-        expect(current_order.user).to eq(user)
+        subject
+        expect(user.orders).to include(assigns(:order))
+      end
+
+      it "redirect to order path" do
+        subject
+        expect(response).to redirect_to(order_path(assigns(:order)))
+      end
+    end
+
+    context "when creating a new order with invalid parameters" do
+
+      subject do
+        post '/orders', params: { order: { invalid_attribute: "value" } }
+      end
+
+      it "renders the 'new' template with unprocessable_entity status" do
+        subject
+        expect(response).to render_template('new')
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
