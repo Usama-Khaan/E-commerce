@@ -99,6 +99,11 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.12.0)
     eventmachine (1.2.7)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.2.3)
@@ -195,6 +200,10 @@ GEM
       activesupport (= 7.0.8)
       bundler (>= 1.15.0)
       railties (= 7.0.8)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -302,6 +311,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  factory_bot_rails
   importmap-rails
   jbuilder
   kaminari
@@ -309,6 +319,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
+  rails-controller-testing
   redis (~> 4.0)
   rspec-rails
   selenium-webdriver
