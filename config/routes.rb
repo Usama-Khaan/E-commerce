@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   patch '/update_line_items', to: 'line_items#update_line_items'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    session: 'users/sessions'
+    session: 'users/sessions',
+    confirmations: 'users/confirmations'
   }
 
   resources :users
