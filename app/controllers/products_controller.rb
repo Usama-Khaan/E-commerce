@@ -19,13 +19,26 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def step2
+    @product = Product.new(session[:step1_data])
+  end
+
   def create
-    @product = Product.create(product_params)
-    if @product.save
-      flash[:notice] = 'Product created'
-      redirect_to product_path(@product)
+    if params[:step] == '1'
+      session[:step1_data] = product_params
+      redirect_to  step2_products_path
     else
-      render :new, status: :unprocessable_entity
+      session[:step2_data] = product_params
+      @product = Product.new(session[:step1_data].merge(session[:step2_data]))
+
+      if @product.save
+        session[:step1_data] = nil
+        session[:step2_data] = nil
+        flash[:notice] = 'Product created'
+        redirect_to product_path(@product)
+      else
+        render :step2, status: :unprocessable_entity
+      end
     end
   end
 

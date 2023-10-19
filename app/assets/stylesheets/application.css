@@ -98,7 +98,7 @@
 }
 
 .remove-all-button{
-  width: 100px;
+  width: 160px;
 }
 
 .custom-cart-icon {
@@ -108,11 +108,6 @@
 
 .custom-cart-icon:hover {
   color: yellowgreen;
-}
-
-.remove-cart-button {
-  border-radius: 20px;
-  width: 265x;
 }
 
 .price-tag {
@@ -161,7 +156,7 @@
   background-color: green;
   text-align: center;
   border-radius: 15px;
-  width: 100%;
+  width: 500px;
   max-width: 120px;
   color: white;
   border-style: none;
