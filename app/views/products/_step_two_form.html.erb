@@ -1,0 +1,35 @@
+<div class="custom-border">
+  <%= form_with(model: @product, url: products_path(step: 2)) do |form| %>
+    <div class="mb-3">
+      <%= form.label :price, 'Price', class: "form-label" %>
+      <%= form.number_field :price, class: "form-control" %>
+      <%= render partial: 'errors', locals: { field_name: :price } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :product_stock_quantity, 'Product Stock Quantity', class: "form-label" %>
+      <%= form.number_field :product_stock_quantity, class: "form-control" %>
+      <%= render partial: 'errors', locals: { field_name: :product_stock_quantity } %>
+    </div>
+
+    <div class="mb-3" data-controller="previews">
+      <%= form.label :add_image, 'Add Image', class: "form-label" %>
+      <%= form.file_field :image,
+        direct_upload: true,
+        data: { previews_target: "input", action: "change->previews#preview" } %>
+      <% if @product.image.attached? %>
+        <div class="image-container">
+          <%= image_tag @product.image, data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>
+          <%= link_to 'Remove', product_remove_image_path(@product), method: :delete, data: { confirm: 'Are you sure you want to remove this image?' } %>
+        </div>
+      <% else %>
+        <%= image_tag "", data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>
+      <% end %>
+      <%= render partial: 'errors', locals: { field_name: :image } %>
+    </div>
+
+    <div class="text-center">
+      <%= form.submit 'Create Product', class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>
