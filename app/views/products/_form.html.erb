@@ -26,9 +26,18 @@
       </div>
     </div>
 
-    <div>
+    <div data-controller="previews">
       <%= form.label :add_image, class: "form-label" %>
-      <%= form.file_field :image %>
+      <%= form.file_field :image,
+        direct_upload: true,
+        data: { previews_target: "input", action: "change->previews#preview" } %>
+
+      <% if product.image.attached? %>
+        <%= image_tag product.image, data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>
+      <% else %>
+        <%= image_tag "", data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>
+      <% end %>
+
       <%= render partial: 'errors', locals: { field_name: :image } %>
     </div>
 
