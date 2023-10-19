@@ -15,6 +15,8 @@ gem "redis", "~> 4.0"
 gem "byebug"
 gem "kaminari"
 gem 'mailcatcher'
+gem 'factory_bot_rails'
+gem 'rails-controller-testing'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -54,5 +56,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
+  gem "rspec-rails"
 end

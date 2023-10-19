@@ -4,11 +4,17 @@ Rails.application.routes.draw do
   patch '/update_line_items', to: 'line_items#update_line_items'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    session: 'users/sessions'
+    session: 'users/sessions',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
   }
 
   resources :users
-  resources :products
+  resources :products do
+    collection do
+      get :step2
+    end
+  end
   resources :carts, except: %i[index new] do
     member do
       get :add_product

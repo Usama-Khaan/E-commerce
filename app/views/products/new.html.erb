@@ -1,2 +1,2 @@
-<h1>Add New Product</h1>
-<%= render "form", product: @product, url: new_product_path %>
+<h1>New Product</h1>
+<%= render partial: 'form', locals: { product: @product } %>

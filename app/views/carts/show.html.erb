@@ -3,14 +3,14 @@
     <div class="col-md-12">
       <div class="bg-light p-2 mb-4"><h2>Shopping Cart</h2></div>
     </div>
-    <div class="col-md-1 mb-4 ">
+    <div class="col-md-1 mb-4 text-right">
       <div class="tooltip-custom">
-        <%= button_to 'Clear Cart', reset_cart_path(@cart), method: :delete, class: 'btn btn-danger remove-all-button' %>
+        <%= button_to 'Clear Cart', reset_cart_path(@cart), form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: 'btn btn-danger remove-all-button' %>
         <div class="tooltiptext">Remove all products from cart</div>
       </div>
     </div>
     <div class="col-md-11 mb-4 text-right">
-      <%= button_to 'Continue shopping', products_path, method: :get, class: 'btn btn-primary' %>
+      <%= button_to 'Continue shopping', products_path, method: :get, class: 'btn btn-primary continue-shopping-button' %>
     </div>
   </div>
   <div class="row">
@@ -29,17 +29,17 @@
               <%= button_tag '-', type: 'button', class: 'btn btn-primary increment-decrement-button', data: { action: 'decrement', index: index } %>
             </div>
             <div class="card-body text-center">
-              <%= button_to 'Remove', remove_product_cart_path(id: line_item.product.id, cart_id: @cart.id), method: :delete, data: { confirm: 'Are you sure you want to remove this item from the cart?' }, class: 'btn btn-danger btn-block remove-cart-button' %>
+              <%= button_to 'Remove', remove_product_cart_path(id: line_item.product.id, cart_id: @cart.id), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger btn-block remove-cart-button' %>
             </div>
           </div>
         </div>
       </div>
       <% total_price += line_item.product.price * line_item.line_items_quantity %>
     <% end %>
-    <div class="col-md-20 mb-5">
-      <div class="text-right">
-        <h4>Total Price: <span id="total-price"><%= number_to_currency(total_price) %></span></h4>
-        <%= button_to 'Checkout', new_order_path(@order), method: :get, class: 'btn btn-warning checkout-button' %>
-      </div>
-    </div>
+</div>
+<div class="col-md-20 mb-5">
+  <div class="text-right">
+    <h4>Total Price: <span id="total-price"><%= number_to_currency(total_price) %></span></h4>
+    <%= button_to 'Checkout', new_order_path(@order), method: :get, class: 'btn btn-warning checkout-button' %>
+  </div>
 </div>

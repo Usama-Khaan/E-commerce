@@ -16,7 +16,9 @@
   </head>
 
   <body>
-    <%= render "layouts/navbar" %>
+    <% if user_signed_in? %>
+      <%= render "layouts/navbar" %>
+    <% end %>
     <div class="container-fluid">
       <p class="notice"><%= notice %></p> 
       <p class="alert"><%= alert %></p> 

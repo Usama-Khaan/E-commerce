@@ -1,17 +1,45 @@
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <div class="card card-depth rounded border-dark mb-3" style="max-width: 840px;">
+  <div class="card card-depth rounded border-dark mb-3">
     <div class="row g-0">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= image_tag(@product.image, class: "img-fluid rounded-start product-image", alt: @product.title) %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="card-body">
-          <h5 class="card-title"><%= @product.title %></h5>
-          <p class="card-text">Description: <%= @product.description %></p>
-          <p class="card-text">Price: <%= number_to_currency(@product.price) %></p>
-          <p class="card-text">Stock Quantity: <%= @product.product_stock_quantity %></p>
-          <% @cart = current_user.cart || current_user.create_cart %>
-          <%= link_to 'Add to Cart',  add_product_cart_path(id: @product.id, cart_id: @cart.id), class: 'btn btn-primary btn-block' %>
+          <div class="d-flex justify-content-between align-items-start">
+            <h5 class="card-title"><%= @product.title %></h5>
+            <% if current_user.has_role?('Admin') || current_user.has_role?('Staff') %>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <%= link_to edit_product_path(@product) do %>
+                    <div class="mr-2"> <!-- Add margin to the right -->
+                      <button class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                    </div>
+                  <% end %>
+                  <% if current_user.has_role?('Admin') %>
+                    <%= button_to product_path(@product), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: 'btn btn-danger', title: 'Delete', remote: true do %>
+                      <div class="ml-2"> <!-- Add margin to the left -->
+                        <i class="fas fa-trash-alt"></i> Delete
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <p class="card-text"><strong>Description: </strong><%= @product.description %></p>
+          <p class="card-text"><strong>Price: </strong><%= number_to_currency(@product.price) %></p>
+          <% if current_user.has_role?('Staff') || current_user.has_role?('Admin') %>
+            <p class="card-text"><strong>Stock Quantity: </strong><%= @product.product_stock_quantity %></p>
+          <% end %>
+          <% if @product.product_stock_quantity > 0 %>
+            <% @cart = current_user.cart || current_user.create_cart %>
+            <%= link_to 'Add to Cart', add_product_cart_path(id: @product.id, cart_id: @cart.id), class: 'btn btn-primary btn-block' %>
+          <% else %>
+            <p class="text-danger">Out of Stock</p>
+          <% end %>
         </div>
       </div>
     </div>
