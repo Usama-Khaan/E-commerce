@@ -1,12 +1,14 @@
 <div class="container-fluid">
-  <div class="text-right bg-light">
-    <%= button_to "New", new_product_path, method: :get, class: "custom-button" %>
+  <div class="text-right">
+    <% if current_user.has_role?('Admin') || current_user.has_role?('Staff') %>
+      <%= button_to "New", new_product_path, method: :get, class: "custom-button" %>
+    <% end %>
   </div>
   <div class="row">
     <div class="col mb-3">
       <form class="d-flex" action="/products" method="GET">
         <input class="custom-product-input" type="search" placeholder="Name" name="name_query">
-        <input class="custom-product-input" type="search" placeholder="Min price" name "min_price">
+        <input class="custom-product-input" type="search" placeholder="Min price" name="min_price">
         <input class="custom-product-input" type="search" placeholder="Max price" name="max_price">
         <button class="search-button" type="submit">Search</button>
       </form>
@@ -25,7 +27,6 @@
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= product.title %></h5>
-              <p class="card-text">Description: <%= product.description %></p>
               <p class="card-text">Price: <%= number_to_currency(product.price) %></p>
               <% if product.product_stock_quantity > 0 %>
                 <% @cart = current_user.cart || current_user.create_cart %>
