@@ -32,9 +32,13 @@ RSpec.describe "Orders", type: :request do
         post '/orders', params: { order: { invalid_attribute: "value" } }
       end
 
-      it "renders the 'new' template with unprocessable_entity status" do
+      it "renders the 'new' template" do
         subject
         expect(response).to render_template('new')
+      end
+
+      it "it checks the unprocessable_entity status" do
+        subject
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
