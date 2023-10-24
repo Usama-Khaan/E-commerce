@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
 
   VALIDATE_DIGIT = /^\d+$/
 
+  def about; end
+
   def index
     @name_query = params[:name_query]
     min_price = params[:min_price]

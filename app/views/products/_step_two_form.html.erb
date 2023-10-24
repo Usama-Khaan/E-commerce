@@ -20,7 +20,7 @@
       <% if @product.image.attached? %>
         <div class="image-container">
           <%= image_tag @product.image, data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>
-          <%= link_to 'Remove', product_remove_image_path(@product), method: :delete, data: { confirm: 'Are you sure you want to remove this image?' } %>
+          <%= link_to '', product_image_path(@product), method: :delete, data: { confirm: 'Are you sure you want to remove this image?' } %>
         </div>
       <% else %>
         <%= image_tag "", data: { previews_target: "preview" }, style: "width: 100px; height: auto;" %>

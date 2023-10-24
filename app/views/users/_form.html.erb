@@ -1,23 +1,36 @@
-<%= form_with model: user do |form| %>
-  <div>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
-    <%= render partial: 'errors', locals: { field_name: :username } %>
-  </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4>Edit User Information</h4>
+        </div>
+        <div class="card-body">
+          <%= form_with model: user do |form| %>
+            <div class="form-group">
+              <%= form.label :username, class: "font-weight-bold" %>
+              <%= form.text_field :username, class: "form-control" %>
+              <%= render partial: 'errors', locals: { field_name: :username } %>
+            </div>
 
-  <div>
-    <%= form.label :email %><br>
-    <%= form.text_area :email %><br>
-    <%= render partial: 'errors', locals: { field_name: :email } %>
-  </div>
+            <div class="form-group">
+              <%= form.label :email, class: "font-weight-bold" %>
+              <%= form.text_field :email, class: "form-control" %>
+              <%= render partial: 'errors', locals: { field_name: :email } %>
+            </div>
 
-  <div>
-    <%= form.label :role_ids, 'Assign Role:' %>
-    <%= form.select :role_ids, Role.all.map { |role| [role.name, role.id] }, {}, multiple: true %>
-    <%= render partial: 'errors', locals: { field_name: :role_ids } %>
-  </div>
+            <div class="form-group">
+              <%= form.label :role_ids, 'Assign Role:', class: "font-weight-bold" %>
+              <%= form.select :role_ids, Role.all.map { |role| [role.name, role.id] }, {}, { class: 'form-control', multiple: true } %>
+              <%= render partial: 'errors', locals: { field_name: :role_ids } %>
+            </div>
 
-  <div>
-    <%= form.submit %>
+            <div class="text-center">
+              <%= form.submit class: "btn btn-block btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
