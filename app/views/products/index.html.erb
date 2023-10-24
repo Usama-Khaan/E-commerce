@@ -5,7 +5,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col mb-3">
+    <div class="col">
       <form class="d-flex" action="/products" method="GET">
         <input class="custom-product-input" type="search" placeholder="Name" name="name_query">
         <input class="custom-product-input" type="search" placeholder="Min price" name="min_price">
@@ -14,6 +14,7 @@
       </form>
     </div>
   </div>
+  <br>
 
   <% if @products.empty? %>
     <div class="alert alert-danger" role="alert">Product not found</div>
